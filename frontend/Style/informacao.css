@@ -12,9 +12,9 @@ body {
 
 /* --- Detalhes da obra --- */
 .detalhes-obra {
-    padding: 20px 30px;
-    max-width: 1120px;
-    margin: 40px auto 20px auto;
+    padding: 10px 10px;        /* ↓ menos espaço horizontal */
+    max-width: 1450px;         /* ↑ ocupa mais a tela */
+    margin: 20px auto 15px auto;
 }
 
 .detalhes-header {
@@ -35,8 +35,8 @@ body {
 
 .carrinho {
     cursor: pointer;
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
 }
 
 .detalhes-conteudo {
@@ -70,14 +70,13 @@ body {
 
 /* --- Sinopse --- */
 .sinopse {
-    border-radius: 6px;
-    padding: 20px 30px;
-    max-width: 1120px;
-    margin: 0 auto 40px auto;
+    padding: 10px 10px;        /* ↓ igual ao topo */
+    max-width: 1450px;
+    margin: 0 auto 30px auto;
 }
 
 .sinopse h2{
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #162ee4;
     margin-bottom: 10px;
 }
 
@@ -97,8 +96,8 @@ body {
 
 
 .tabela-container {
-    max-width: 1120px; /* mesma largura do texto da sinopse */
-    margin: 40px auto; /* centraliza horizontalmente */
+    max-width: 1450px;
+    margin: 30px auto;
 }
 
 .tabela-container h3 {

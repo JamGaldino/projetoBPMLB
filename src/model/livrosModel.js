@@ -1,7 +1,7 @@
 import { openDb } from "../configDB.js";
 
 // a tabela de livros se não existir 
-export async function createTableLivros() { 
+export async function createTableLivros() {
     const db = await openDb();
     await db.exec(`
         CREATE TABLE IF NOT EXISTS Livros (
@@ -27,7 +27,7 @@ export async function createTableLivros() {
 }
 
 // insere a informações de livro no bd, uso para inserir os data json no bd
-export async function insertLivro(livro) { 
+export async function insertLivro(livro) {
     const db = await openDb();
 
     await db.run(`
@@ -94,7 +94,7 @@ export async function getLivroPorTitulo(titulo) {// usada na tela de informaçã
         WHERE titulo = ?;
 
     `, [titulo]
-);
+    );
 }
 
 export async function getLivrosTelaInicial() { // faz a varredura de quais livros são destaques e lancamentos 
@@ -110,5 +110,46 @@ export async function getLivrosTelaInicial() { // faz a varredura de quais livro
         FROM Livros
         WHERE destaque = 1 OR lancamento = 1
         GROUP BY titulo, autor, imagem_url;
+    `);
+}
+
+
+// Retorna livros para a página Explorar quando UM gênero é selecionado
+//  filtra pelo gênero informado,evita repetição de títulos, retorna apenas 1 exemplar por título
+export async function getExplorarPorGenero(genero) { 
+    const db = await openDb();
+    return db.all(`
+        SELECT l.*
+        FROM Livros l
+        INNER JOIN (
+            SELECT MIN(id_livro) AS id
+            FROM Livros
+            WHERE genero = ?
+            GROUP BY titulo
+        ) resultado ON l.id_livro =  resultado.id;
+    `, [genero]);
+}
+
+
+// Retorna livros para a página Explorar quando NENHUM gênero é selecionado
+export async function getExplorar() {
+
+    const db = await openDb();
+    return db.all(`
+        SELECT l.*
+        FROM Livros l
+        INNER JOIN (
+            SELECT MIN(id_livro) AS id
+            FROM Livros
+            GROUP BY titulo
+        ) resultado ON l.id_livro =  resultado.id;
+    `);
+}
+
+export async function listaLivros() {
+    const db = await openDb();
+    return db.all(`
+        SELECT * 
+        FROM Livros;
     `);
 }

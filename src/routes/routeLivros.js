@@ -3,14 +3,27 @@ import {
     listarLivros, 
     detalhesLivro,
     importarLivros,
-    listarLivrosTelaInicial
+    listarLivrosTelaInicial,
+    explorar
 } from "../controller/controllerLivros.js";   
 const router = Router();
 
-router.get("/", listarLivros);// lista todos os exemplares do bd
-router.get("/detalhes", detalhesLivro);// funcionou , pega informações delivros especificos "http://localhost:3000/livros/detalhes?titulo=O Mundo de Sofia"
-router.post("/importar-livros", importarLivros);// funcionou 
-router.get("/tela-inicial", listarLivrosTelaInicial);// me da todos os livros destaqus e lançamentos
+router.get("/", listarLivros); 
+// Lista todos os livros do banco
+
+router.get("/detalhes", detalhesLivro); 
+// Retorna os detalhes de um livro específico (por título)
+
+router.post("/importar-livros", importarLivros); 
+// Importa livros para o banco de dados
+
+router.get("/tela-inicial", listarLivrosTelaInicial); 
+// Retorna livros de destaque e lançamentos da tela inicial
+
+router.get("/explorar", explorar); 
+// Lista livros da página Explorar (com ou sem filtro por gênero)
+
+
 
 
 export default router;
