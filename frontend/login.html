@@ -23,7 +23,7 @@
 <body> 
     <header>
         <div class="logo">
-            <a href="http://127.0.0.1:5501/telaInicial.html"><img src="img/logo.png" alt="Logo da Biblioteca" ></a>
+            <a href="Inicial.html"><img src="img/logo.png" alt="Logo da Biblioteca" ></a>
         </div>
 
         <div class="container-pesquisa">
@@ -34,8 +34,8 @@
         </div>
 
         <div class="icons">
-            <a href="http://127.0.0.1:5501/Perfil.html"><img src="img/Icon.png" alt="Usuário" width="40" height="40"></a>
-            <a href="http://127.0.0.1:5501/Carrinho.html"><img src="img/carrinho.png" alt="Carrinho" width="55" height="55"></a>
+            <a href="Perfil.html"><img src="img/Icon.png" alt="Usuário" width="40" height="40"></a>
+            <a href="Carrinho.html"><img src="img/carrinho.png" alt="Carrinho" width="55" height="55"></a>
             <a href="#"><img src="img/menu.png" alt="Menu" width="45" height="50"></a>
         </div>
     </header>
@@ -47,20 +47,20 @@
 
         <div class="login-box">
 
-            <form action="login" >
+            <form onsubmit="fazerLogin(event)" >
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" required>
         
-                <label for="senha">Senha:</label>
+                <label >Senha:</label>
                 <input type="password" id="senha" name="senha" required>
 
-                <p><a href="recuperar senha">Esqueci a Senha</a></p>
+                <p><a href="#">Esqueci a Senha</a></p>
 
-                <button class="botao">
+                <button type="submit" class="botao">
                 Entrar
                 </button>
 
-                <p>Não tem cadastro? <a href="#" class="Acesso">Criar conta</a></p>
+                <p>Não tem cadastro? <a href="./Cadastro.html" class="Acesso">Criar conta</a></p>
                 
                 <button class="button">
                     <img src="img/image 45.png" alt="Entrar com Gmail">
@@ -68,7 +68,7 @@
             </form>
         </div>
     </main>
-
+    <script src="/js/login.js"></script>
 
 </body>
 </html>
