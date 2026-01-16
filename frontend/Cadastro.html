@@ -15,7 +15,7 @@
 <body>
     <header>
         <div class="logo">
-            <a href="http://127.0.0.1:5501/telaInicial.html"><img src="img/logo.png" alt="Logo da Biblioteca" ></a>
+            <a href="Inicial.html"><img src="img/logo.png" alt="Logo da Biblioteca" ></a>
         </div>
 
         <div class="container-pesquisa">
@@ -26,107 +26,98 @@
         </div>
 
         <div class="icons">
-            <a href="http://127.0.0.1:5501/Perfil.html"><img src="img/Icon.png" alt="Usuário" width="40" height="40"></a>
-            <a href="http://127.0.0.1:5501/Carrinho.html"><img src="img/carrinho.png" alt="Carrinho" width="55" height="55"></a>
+            <a href="Perfil.html"><img src="img/Icon.png" alt="Usuário" width="40" height="40"></a>
+            <a href="Carrinho.html"><img src="img/carrinho.png" alt="Carrinho" width="55" height="55"></a>
             <a href="#"><img src="img/menu.png" alt="Menu" width="45" height="50"></a>
         </div>
     </header>
-    <main class="Principal">
-
+    <main >
         <h1 class="titulo">Realizar Cadastro!</h1>
 
-        <form action="Cadastro" class="principal-form">
+        <form class="principal-form">
             <div class="Alinhar-email">
                 <label for="Nome">Nome:</label>
-                <input type="text" id="Nome" name="Nome" required>
+                <input type="text" id="Nome" name="nome" required>
             </div>
 
             <div class="Global">
                 <div class="Alinhar">
                     <label for="CPF">CPF:</label>
-                    <input type="text" id="CPF" name="CPF" required>
+                    <input type="text" id="CPF" name="cpf" required>
                 </div>
                 <div class="Alinhar">
                     <label for="RG">RG:</label>
-                    <input type="text" id="RG" name="RG" required>
+                    <input type="text" id="RG" name="rg" required>
                 </div>
             </div>
 
             <div class="Global">
                 <div class="Alinhar">
                     <label for="Sexo">Sexo:</label>
-                    <input type="text" id="Sexo" name="Sexo" required>
+                    <input type="text" id="Sexo" name="sexo" required>
                 </div>
                 <div class="Alinhar">
-                    <label for="Data de nascimento">Data de nascimento:</label>
-                    <input type="date" id="Data de nascimento" name="Data de nascimento" required>
+                    <label for="DataNascimento">Data de nascimento:</label>
+                    <input type="date" id="DataNascimento" name="data_nascimento" required>
                 </div>
             </div>
-
             <div class="Global">
                 <div class="Alinhar">
                     <label for="Rua">Rua:</label>
-                    <input type="text" id="Rua" name="Rua" required>
+                    <input type="text" id="Rua" name="rua" required>
                 </div>
                 <div class="Alinhar">
                     <label for="Numero">Numero:</label>
-                    <input type="number" id="Numero" name="Numero" required>
+                    <input type="number" id="Numero" name="numero" required>
                 </div>
             </div>
 
             <div class="Global">
                 <div class="Alinhar">
-                    <label for="CEP">CEP:</label>
-                    <input type="text" id="CEP" name="CEP" required>
-                </div>
-                <div class="Alinhar">
                     <label for="Bairro">Bairro:</label>
-                    <input type="text" id="Bairro" name="Bairro" required>
+                    <input type="text" id="Bairro" name="bairro" required>
                 </div>
             </div>
 
             <div class="Global">
                 <div class="Alinhar-UF">
                     <label for="UF">UF:</label>
-                    <input type="text" id="UF" name="UF" required>
+                    <input type="text" id="UF" name="uf" required>
                 </div>
                 <div class="Alinhar-Complemento">
                     <label for="Complemento">Complemento:</label>
-                    <input type="text" id="Complemento" name="Complemento" required>
+                    <input type="text" id="Complemento" name="complemento" required>
                 </div>
                 <div class="Alinhar-Cidade">
                     <label for="Cidade">Cidade :</label>
-                    <input type="text" id="Cidade" name="Cidade" required>
+                    <input type="text" id="Cidade" name="cidade" required>
                 </div>
             </div>
 
-            <div class="Alinhar-email" >
+            <div class="Alinhar-email">
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" required>
             </div>
-
             <div class="Global">
                 <div class="Alinhar">
                     <label for="Telefone">Telefone:</label>
-                    <input type="tel" id="Telefone" name="Telefone" required>
+                    <input type="tel" id="Telefone" name="telefone" required>
                 </div>
                 <div class="Alinhar">
                     <label for="Telefone2">Telefone 2:</label>
-                    <input type="tel" id="Telefone2" name="Telefone2" >
+                    <input type="tel" id="Telefone2" name="telefone2" >
                 </div>
             </div>
-
             <div class="Global">
                 <div class="Alinhar">
                     <label for="Senha">Senha:</label>
-                    <input type="text" id="Senha" name="Senha" required>
+                    <input type="password" id="Senha" name="senha" required>
                 </div>
                 <div class="Alinhar">
-                    <label for="Confirmação de senha">Confirmação da Senha:</label>
-                    <input type="text" id="Confirmação" name="Confirmação Senha" required>
+                    <label for="Confirmacao">Confirmação da Senha:</label>
+                    <input type="password" id="Confirmacao" name="confirmacao_senha" required>
                 </div>
             </div>
-
             <div class="Container-Foto">
                 <div Alinhar-perfil>
                     <h4>Foto do Perfil</h4>
@@ -151,20 +142,16 @@
                     </div>
                 </div>
             </div>
-            <button class="botao">
-                Finalizar cadastro!
-            </button>
-
+            <button type="submit" class="botao">Finalizar cadastro!</button>
             <div class="AcessoRapido">
-                <p>Já tem cadastro? <a href="#">Faça Longin</a></p>
+                <p>Já tem cadastro? <a href="./login.html">Faça Login</a></p>
                 <button class="Gmail">
                     <img src="img/image 45.png" alt="Entrar com Gmail">
                 </button>
             </div>
-
         </form>
         
     </main>
-    
+    <script src="/js/Cadastro.js"></script>
 </body>
 </html>
