@@ -45,8 +45,12 @@ function preencherDetalhesLivro(livro) {
     document.getElementById("id").textContent = livro.id_livro
     
     const linhaColecao = document.getElementById("linha-colecao");
+    const spanColecao = document.getElementById("colecao");
+    const linkColecao = document.getElementById("link-colecao");
+
     if (livro.colecao && livro.colecao.trim() !== "") {
-        document.getElementById("colecao").textContent = livro.colecao;
+        spanColecao.textContent = livro.colecao;
+        linkColecao.href = `colecao.html?colecao=${encodeURIComponent(livro.colecao)}`;
     } else {
         linhaColecao.style.display = "none";
     }

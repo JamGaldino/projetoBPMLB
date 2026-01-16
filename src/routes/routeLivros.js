@@ -4,7 +4,8 @@ import {
     detalhesLivro,
     importarLivros,
     listarLivrosTelaInicial,
-    explorar
+    explorar,
+    explorarPorColecao
 } from "../controller/controllerLivros.js";   
 const router = Router();
 
@@ -23,7 +24,7 @@ router.get("/tela-inicial", listarLivrosTelaInicial);
 router.get("/explorar", explorar); 
 // Lista livros da página Explorar (com ou sem filtro por gênero)
 
-
+router.get("/colecao",explorarPorColecao)
 
 
 export default router;

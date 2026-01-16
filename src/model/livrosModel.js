@@ -146,6 +146,38 @@ export async function getExplorar() {
     `);
 }
 
+export async function listarLivrosComColecao() {
+    const sql = `
+        SELECT 
+            titulo,
+            autor,
+            imagem_url,
+            colecao,
+            genero
+        FROM livros
+        WHERE colecao IS NOT NULL
+        AND colecao <> ''
+        GROUP BY titulo
+    `;
+
+    const [rows] = await db.query(sql);
+    return rows;
+}
+
+export async function getColecao(nomeColecao) {
+    const db = await openDb();
+    return db.all(`
+        SELECT l.*
+        FROM Livros l
+        INNER JOIN (
+            SELECT MIN(id_livro) AS id
+            FROM Livros
+            WHERE colecao = ?
+            GROUP BY titulo
+        ) resultado
+        ON l.id_livro = resultado.id
+    `, [nomeColecao]);
+}
 export async function listaLivros() {
     const db = await openDb();
     return db.all(`

@@ -7,7 +7,8 @@ import {
     insertLivro,
     getLivrosTelaInicial,
     getExplorarPorGenero,
-    getExplorar
+    getExplorar,
+    getColecao
 } from "../model/livrosModel.js";
 import { error } from "console";
 
@@ -78,6 +79,16 @@ export async function explorar(req, res) {
     }
 }
 
+export async function explorarPorColecao(req, res) {
+    const { colecao } = req.query;
+
+    if (!colecao) {
+        return res.status(400).json({ erro: "Coleção não informada" });
+    }
+
+    const livros = await getColecao(colecao);
+    res.json(livros);
+}
 
 
 export async function listarLivros(req, res) {
