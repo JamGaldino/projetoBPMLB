@@ -1,6 +1,7 @@
 import express from 'express';
 import router from './routes/routeLivros.js'
 import { createTableLivros } from './model/livrosModel.js';
+import carrinhoRouter from "./routes/routeCarrinho.js";
 
 const app = express();
 app.use(express.json());
@@ -11,6 +12,7 @@ app.use(router);
 await createTableLivros()
 
 app.use("/livros", router)
+app.use("/carrinho", carrinhoRouter);
 
 const carrinho = [];
 

@@ -139,10 +139,10 @@ function configurarBotaoCarrinho(exemplares) {
             imagem_url: livro.imagem_url
         };
 
-        const resp = await fetch("/carrinho/adicionar", {
+        const resp = await fetch("/carrinho", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            boby: JSON.stringify({ livro: livroParaCarrinho })
+            body: JSON.stringify(livroParaCarrinho)
         });
 
         if (resp.ok) {

@@ -36,9 +36,17 @@ async function main() {
         container.appendChild(item);
     });
 
-    container.addEventListener("click", (e) => {
-        if (e.target.classList.contains("botao-remover")) {
+    container.addEventListener("click", async (e) => {
+        if (!e.target.classList.contains("botao-remover")) return;
+        
+        const id = e.target.dataset.id;
+
+        const resp = await fetch(`/carrinho/${id}`, { method: "DELETE" });
+
+        if (resp.ok) {
             e.target.closest(".lista-item").remove();
+        } else {
+            alert("Não consegui remover no servidor.");
         }
     });
-}
+};
