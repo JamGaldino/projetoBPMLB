@@ -34,7 +34,21 @@ export default async function login(req, res) {
             mensagem: 'Login realizado com sucesso',
             usuario: {
                 id: usuario.id,
-                email: usuario.email
+                nome: usuario.nome,
+                email: usuario.email,
+                cpf: usuario.cpf,
+                rg: usuario.rg,
+                sexo: usuario.sexo,
+                data_nascimento: usuario.data_nascimento,
+                telefone: usuario.telefone,
+                telefone2: usuario.telefone2,
+                cep: usuario.cep,
+                rua: usuario.rua,
+                numero: usuario.numero,
+                complemento: usuario.complemento,
+                bairro: usuario.bairro,
+                cidade: usuario.cidade,
+                uf: usuario.uf
             }
         });
 
