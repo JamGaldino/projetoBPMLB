@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <div id="header"></div
+    <div id="header"></div>
     
     <main class="container">
         <h1>Meu Carrinho</h1>
@@ -38,53 +38,21 @@
                 </div>              
             </div>
 
-            <div class="lista-item">
-                <div class="coluna-selecao">
-                    <input type="checkbox" checked>
-                </div>
-                <div class="coluna-capa">
-                    <img src="img/Labirinto_do_Fauno.png" alt="Capa Labirinto do Fauno">
-                </div>
-                <div class="coluna-info">
-                    <p><strong>Título original: </strong>Pan's Labyrinth: The Labyrinth of the Faun</p>
-                    <p><strong>Título em português: </strong>O Labirinto do Fauno</p>
-                    <p><strong>Autores: </strong>Guillermo del Toro, Cornelia Funke</p>
-                    <p><strong>Ano de publicação: </strong>2022</p>
-                    <p><strong>Gênero literário: </strong>Fantasia sombria, realismo mágico, conto de fadas para adultos, ficção histórica</p>
-                </div>
-                <div class="coluna-acao">
-                    <button class="botao-remover">Remover</button>
-                </div>
-            </div>
-
-            <div class="lista-item">
-                <div class="coluna-selecao">
-                    <input type="checkbox" checked>
-                </div>
-                <div class="coluna-capa">
-                    <img src="img/o_corvo.png" alt="Capa O Corvo">
-                </div>
-                <div class="coluna-info">
-                    <p><strong>Título original: </strong>The Raven</p>
-                    <p><strong>Título em português: </strong>O Corvo</p>
-                    <p><strong>Autor: </strong>Edgar Allan Poe</p>
-                    <p><strong>Ano de publicação: </strong>1845</p>
-                    <p><strong>Gênero literário: </strong>Poema narrativo, Romantismo sombrio</p>
-                </div>
-                <div class="coluna-acao">
-                    <button class="botao-remover">Remover</button>
-                </div>
-            </div>
+            <div id="lista-carrinho" class="lista-carrinho"></div>
         </section>
 
         <section class="acao-botoes">
             <button class="btn-limpar">Limpar tudo</button>
-            <a href="http://127.0.0.1:5501/confirmacao-pedido.html"><button class="btn-confirmar">Confirmar</button></a>
+            <a href="confirmacao-pedido.html">
+                <button class="btn-confirmar">Confirmar</button>
+            </a>
         </section>
     </main>
+
     <div id="footer"></div>
 
     <script src="/js/header.js"></script>
     <script src="/js/footer.js"></script>
+    <script src="/js/scriptCarrinho.js"></script>
 </body>
 </html>

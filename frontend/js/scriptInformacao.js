@@ -94,18 +94,30 @@ function adicionarAoCarrinho() {
         return
     }
 
-    let carrinho = JSON.parse(localStorage.getItem("carrinho"))
 
-    if (!carrinho) {
-        carrinho = []
-    }
+    const livroBase = exemplares[0]; //dados base do livro
 
-    carrinho.push({
-        id_exemplar: exemplarDisponivel.id_livro,
-        titulo: exemplarDisponivel.titulo
+    const livroParaCarrinho = {
+        id: livroBase.id_livro,
+        titulo: livroBase.titulo,
+        autor: livroBase.autor,
+        ano_editora: livroBase.ano_editora,
+        genero: livroBase.genero,
+        imagem_url: livroBase.imagem_url,
+        id_exemplar: exemplarDisponivel.id_livro
+    };
+
+    fetch("/carrinho/adicionar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify( { livro: livroParaCarrinho })
+    });
+
+    .then(resp => {
+        if (resp.ok) alert("Livro adicionado ao carrinho.");
+        else alert("Não consegui adicionar ao carrinho.");
     })
-
-    localStorage.setItem("carrinho", JSON.stringify(carrinho))
-
-    alert("Livro adicionado ao carrinho com sucesso!")
+    
+    .catch(() => alert("Erro de conexão com o servidor."));
+    
 }
