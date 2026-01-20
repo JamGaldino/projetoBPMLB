@@ -1,40 +1,62 @@
 import { Router } from "express";
+import { openDb } from "../configDB.js"
 
 const router = Router();
 
-// "banco" temporário em memória (pra apresentar funcioanndo)
+// Guarda só os ids dos livros adicionados
 
-const carrinho = [];
+const carrinhoIds = [];
 
-// get /carrinho -> lista itens
-router.get("/", (req, res) => {
-    res.json(carrinho);
-});
+// get /carrinho -> devolve os livros completos buscando no BD
+router.get("/", async (req, res) => {
+    try {
+        if (carrinhoIds.length === 0) return res.json([]);
 
-// post /carrinho -> adiciona item
-router.post("/", (req, res) => {
-    const livro = req.body;
+        const db = await openDb();
 
-    if (!livro || !livro.id) {
-        return res.status(400).json({ erro: "Envie um livro com id"});
+        // monta os "?, ?" conforme a quantidade de ids
+
+        const placeholders = carrinhoIds.map(() => "?").join(",");
+
+        const livros = await db.all(
+            `SELECT id_livro AS id, titulo, autor, ano_editora, genero, imagem_url
+            FROM Livros
+            WHERE id_livro IN (${placeholders})`,
+            carrinhoIds
+        );
+
+        res.json(livros);
+    } catch (err) {
+        res.status(500).json({ erro: "Erro ao listar carrinho" });
     }
-
-    // evita duplicado
-    const jaExiste = carrinho.some(item => item.id === livro.id);
-    if (!jaExiste) carrinho.push(livro);
-
-    res.status(201).json({ ok: true, carrinho });
 });
 
-// delete /carrinho/:id -> remove item
+
+// post /carrinho -> recebe uma id e guarda no array
+router.post("/adicionar", (req, res) => {
+    const id = Number(req.body?.id || req.body?.livro?.id_exemplar || req.body?.livro?.id);
+
+    if (!id) return res.status(400).json({ erro: "Envie um id válido" }); 
+
+    if (!carrinhoIds.includes(id)) carrinhoIds.push(id);
+
+    res.status(201).json({ ok: true, carrinhoIds });
+});
+
+// delete /carrinho/:id -> remove do array
 router.delete("/:id", (req, res) => {
     const id = Number(req.params.id);
-    const index = carrinho.findIndex(item => item.id === id);
 
+    const index = carrinhoIds.indexOf(id);
     if (index === -1) return res.status(404).json({ erro: "Item não encontrado" });
 
-    carrinho.splice(index, 1);
-    res.json({ ok: true, carrinho });
+    carrinhoIds.splice(index, 1);
+    res.json({ ok: true, carrinhoIds });
+});
+
+router.delete("/", (req, res) => {
+    carrinhoIds.length = 0;
+    res.json({ ok: true });
 });
 
 export default router;
