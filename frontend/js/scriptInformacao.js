@@ -94,7 +94,6 @@ function adicionarAoCarrinho() {
         return
     }
 
-
     const livroBase = exemplares[0]; //dados base do livro
 
     const livroParaCarrinho = {
@@ -103,16 +102,15 @@ function adicionarAoCarrinho() {
         autor: livroBase.autor,
         ano_editora: livroBase.ano_editora,
         genero: livroBase.genero,
-        imagem_url: livroBase.imagem_url,
-        id_exemplar: exemplarDisponivel.id_livro
+        imagem_url: livroBase.imagem_url
     };
+
 
     fetch("/carrinho/adicionar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify( { livro: livroParaCarrinho })
-    });
-
+    })
     .then(resp => {
         if (resp.ok) alert("Livro adicionado ao carrinho.");
         else alert("Não consegui adicionar ao carrinho.");
