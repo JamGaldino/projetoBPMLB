@@ -1,5 +1,25 @@
 window.addEventListener("load", main);
 
+const btnLimpar = document.querySelector(".btn-limpar")
+
+if (btnLimpar) {
+    btnLimpar.addEventListener("click", async () => {
+        try {
+            const resp = await fetch ("/carrinho", {
+                method: "DELETE"
+            });
+
+            if (resp.ok) {
+                document.getElementById("lista-carrinho").innerHTML = "";
+            } else {
+                alert ("Não foi possível limpar o carrinho.");
+            }
+        } catch (erro) {
+            alert("Erro de conexão com o servidor.");
+        }
+    });
+}
+
 async function main() {
     const container = document.getElementById("lista-carrinho");
 
