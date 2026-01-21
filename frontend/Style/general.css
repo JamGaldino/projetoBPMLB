@@ -56,6 +56,18 @@ input {
     
 }
 
+/* Estilo para parágrafos informativos */
+.info-exibicao {
+    background: #e8ecf7;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    margin: 0;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
 .botao {
     background-color: #312783;
     color: white;

@@ -9,6 +9,8 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(meusCaminhos.frontend, 'Cadastro.html'));
 });
 
-router.post('/', CadastroController);
+router.post('/', async (req, res) => {
+    await CadastroController(req, res);
+});
 
 export default router;

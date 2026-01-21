@@ -7,7 +7,7 @@ form.addEventListener('submit', async (event) => {
     const confirmacao = document.getElementById('Confirmacao').value;
 
     if (senha !== confirmacao) {
-        alert('As senhas não diferentes');
+        alert('As senhas não são iguais');
         return;
     }
 

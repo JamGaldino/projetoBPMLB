@@ -111,11 +111,9 @@ function adicionarAoCarrinho() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify( { livro: livroParaCarrinho })
     })
-    .then(resp => {
-        if (resp.ok) alert("Livro adicionado ao carrinho.");
-        else alert("Não consegui adicionar ao carrinho.");
+        .then(resp => {
+            if (resp.ok) alert("Livro adicionado ao carrinho.");
+            else alert("Não consegui adicionar ao carrinho.");
     })
-    
-    .catch(() => alert("Erro de conexão com o servidor."));
-    
+    .catch(() => alert("Erro de conexão com o servidor."));    
 }

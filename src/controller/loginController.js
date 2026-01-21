@@ -1,5 +1,8 @@
 import bcrypt from 'bcryptjs';
 import bd from '../data/database.js';
+import jwt from 'jsonwebtoken';
+
+const SECRET = 'Chave';
 
 export default async function login(req, res) {
     try {
@@ -29,12 +32,37 @@ export default async function login(req, res) {
                 mensagem: 'Email ou senha inválidos'
             });
         }
+        const token = jwt.sign(
+            {
+                id:usuario.id,
+                email: usuario.email
+            },
+            SECRET,
+            {
+                expiresIn: '1h'
+            }
+        );
 
         return res.status(200).json({
             mensagem: 'Login realizado com sucesso',
+            token:token,
             usuario: {
                 id: usuario.id,
-                email: usuario.email
+                nome: usuario.nome,
+                email: usuario.email,
+                cpf: usuario.cpf,
+                rg: usuario.rg,
+                sexo: usuario.sexo,
+                data_nascimento: usuario.data_nascimento,
+                telefone: usuario.telefone,
+                telefone2: usuario.telefone2,
+                cep: usuario.cep,
+                rua: usuario.rua,
+                numero: usuario.numero,
+                complemento: usuario.complemento,
+                bairro: usuario.bairro,
+                cidade: usuario.cidade,
+                uf: usuario.uf
             }
         });
 
