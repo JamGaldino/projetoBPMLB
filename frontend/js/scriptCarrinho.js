@@ -1,72 +1,147 @@
-window.addEventListener("load", main);
+window.addEventListener("load", () => {
+    const btnLimpar = document.querySelector(".btn-limpar")
+    const btnConfirmar = document.querySelector(".btn-confirmar");
+    const container = document.getElementById("lista-carrinho")
 
-const btnLimpar = document.querySelector(".btn-limpar")
+    //guarda o estado atualdo carrinho na tela
+    let carrinhoAtual = [];
 
-if (btnLimpar) {
-    btnLimpar.addEventListener("click", async () => {
-        try {
-            const resp = await fetch ("/carrinho", {
-                method: "DELETE"
-            });
-
-            if (resp.ok) {
-                document.getElementById("lista-carrinho").innerHTML = "";
-            } else {
-                alert ("Não foi possível limpar o carrinho.");
-            }
-        } catch (erro) {
-            alert("Erro de conexão com o servidor.");
+    // obriga fazer o login
+    function verificarLogin() {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("Você precisa estar logado para acessar o carrinho");
+            window.location.href = "login.html";
+            return null;
         }
-    });
-}
+        return token;
+    }
 
-async function main() {
-    const container = document.getElementById("lista-carrinho");
+    //carrega o carrinho
+    async function carregarCarrinho() {
+        const token = verificarLogin();
+        if (!token) return;
+        
+        const resp = await fetch("/carrinho", {
+        headers: { "Authorization": `Bearer ${token}` }
+        });
 
-    const resp = await fetch("/carrinho");
-    const itens = await resp.json();
+        //se o token for invalido/expirado
+        if (resp.status === 401 || resp.status === 403) {
+            alert("Sua sessão expirou. Faça login novamente");
+            localStorage.removeItem("token");
+            window.location.href = "login.html"
+            return;
+        }
 
-    container.innerHTML = "";
+        const itens = await resp.json();
+        carrinhoAtual = itens;
 
-    itens.forEach(livro => {
-        const item = document.createElement("div");
-        item.classList.add("lista-item");
+        container.innerHTML = "";
 
-        item.innerHTML = `
-        <div class="coluna-selecao">
-            <input type="checkbox" checked>
-        </div>
+        if (itens.lenght === 0) {
+            container.innerHTML = `<p style = "padding: 12px;">Carrinho vazio.</p>`;
+            return;
+        }
 
-        <div class="coluna-capa">
-            <img src="${livro.imagem_url}" alt="Capa ${livro.titulo}">
-        </div>
+        itens.forEach(livro => {
+            const div = document.createElement("div");
+            div.classList.add("lista-item");
 
-        <div class="coluna-info">
-            <p><strong>Título:</strong> ${livro.titulo}</p>
-            <p><strong>Autor:</strong> ${livro.autor}</p>
-            <p><strong>Ano/Editora:</strong> ${livro.ano_editora}</p>
-            <p><strong>Gênero:</strong> ${livro.genero}</p>
-        </div>
+            div.innerHTML = `
+                <div class="coluna-capa">
+                    <img src="${livro.imagem_url}" alt="Capa ${livro.titulo}">
+                </div>
 
-        <div class="coluna-acao">
-            <button class="botao-remover" data-id="${livro.id}">Remover</button>
-        </div>
-        `;
+                <div class="coluna-info">
+                    <p><strong>Título:</strong> ${livro.titulo}</p>
+                    <p><strong>Autor:</strong> ${livro.autor}</p>
+                    <p><strong>Ano/Editora:</strong> ${livro.ano_editora}</p>
+                    <p><strong>Gênero:</strong> ${livro.genero}</p>
+                </div>
 
-        container.appendChild(item);
-    });
+                <div class="coluna-acao">
+                    <button class="botao-remover" data-id="${livro.id}">Remover</button>
+                </div>
+            `;
 
+            container.appendChild(div);
+        });
+    }
+
+        //remover item clicando no botão
     container.addEventListener("click", async (e) => {
         if (!e.target.classList.contains("botao-remover")) return;
         
+        const token = verificarLogin();
+        if (!token) return;
+
         const id = e.target.dataset.id;
 
-        const resp = await fetch(`/carrinho/${id}`, { method: "DELETE" });
+        
+        const resp = await fetch(`/carrinho/${id}`, { 
+            method: "DELETE",
+            headers: { "Authorization": `Bearer ${token}` }
+        });
 
+        if (resp.status === 401 || resp.status === 403) {
+            alert("Sua sessão expirou. Faça login novamente");
+            localStorage.removeItem("token");
+            window.location.href = "login.html";
+            return;
+
+        }
+        
         if (resp.ok) {
             e.target.closest(".lista-item").remove();
+            carrinhoAtual = carrinhoAtual.filter(l => String(l.id) !== String(id));
+
+            if (carrinhoAtual.length === 0) {
+                container.innerHTML = `<p style = "padding: 12px;">Carrinho vazio.</p>`;
+            }
         } else {
-            alert("Não consegui remover no servidor.");
+            alert("Não consegui remover");
         }
     });
-};
+
+    //limpar carrinho
+    if (btnLimpar) {
+        btnLimpar.addEventListener("click", async () => {
+            const token = verificarLogin();
+            if (!token) return;
+
+            const resp = await fetch("/carrinho", {
+                method: "DELETE",
+                headers: { "Authorization": `Bearer ${token}` }
+            });
+
+            if (resp.status === 401 || resp.status === 403) {
+                alert("Sua sessão expirou. Faça login novamente");
+                localStorage.removeItem("token");
+                window.location.href = "login.html";
+                return;
+            }
+
+            if (resp.ok) {
+                carrinhoAtual = [];
+                container.innerHTML = `<p style = "padding: 12px;">Carrinho vazio.</p>`;
+            } else {
+                alert("Não foi possível limpar o carrinho");
+            }
+        });
+    }  
+
+    //so vai pra tela de confirmacao se tiver livro
+    if (btnConfirmar) {
+        btnConfirmar.addEventListener("click", (e) => {
+            if (carrinhoAtual.length === 0) {
+            e.preventDefault();
+            alert("Adicione pelo menos 1 livro no carrinho antes de confirmar o pedido.");
+            return;
+        }
+        window.location.href = "confirmacao-pedido.html";
+    });
+  }
+  carregarCarrinho();
+});
+

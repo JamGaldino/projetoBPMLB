@@ -85,6 +85,14 @@ function listarExemplares(lista) {
 
 
 function adicionarAoCarrinho() {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        alert("Você precisa estar logado para adicionar ao carrinho.");
+        window.location.href = "login.html";
+        return;
+    }
+
     const exemplarDisponivel = exemplares.find(
         exemplar => exemplar.disponibilidade.toLowerCase() === "disponível"
     )
@@ -108,12 +116,22 @@ function adicionarAoCarrinho() {
 
     fetch("/carrinho/adicionar", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify( { livro: livroParaCarrinho })
+        headers: { 
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}` 
+        },
+        body: JSON.stringify({ livro: livroParaCarrinho })
     })
-        .then(resp => {
+        .then(async (resp) => {
+            if (resp.status === 401) {
+                alert("Sessão expirada. Faça login novamente.");
+                localStorage.removeItem("token");
+                window.location.href = "login.html";
+                return;
+            } 
+            
             if (resp.ok) alert("Livro adicionado ao carrinho.");
             else alert("Não consegui adicionar ao carrinho.");
-    })
-    .catch(() => alert("Erro de conexão com o servidor."));    
+        })
+        .catch(() => alert("Erro de conexão com o servidor."));    
 }

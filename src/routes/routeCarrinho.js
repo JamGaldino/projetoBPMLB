@@ -1,7 +1,10 @@
 import { Router } from "express";
 import { openDb } from "../configDB.js"
+import autenticar from '../middleware/auth.js'
 
 const router = Router();
+
+router.use(autenticar);
 
 // Guarda só os ids dos livros adicionados
 
