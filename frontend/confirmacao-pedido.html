@@ -16,7 +16,6 @@
 <body>
     <div id="header"></div>
 
-
     <main class="container container-confirmacao">
         <div class="conteudo-principal">
             <div class="coluna-esquerda">
@@ -26,36 +25,14 @@
                         <img src="img/capa.png" alt="icon livro">
                         <h2>Livros</h2>
                     </div>
-                    <div class="item-pedido">
-                        <div class="livro-capa">
-                            <img src="img/Labirinto_do_Fauno.png" alt="Capa Labirinto do fauno">
-                        </div>
-                        <div class="livro-info">
-                            <p class="titulo-livro-conf">O Labirinto do Fauno</p>
-                            <p class="autor-livro-conf">Guillermo del Toro, Cornelia Funke</p>
-                        </div>
-                        <div class="livro-acoes">
-                            <div class="quantidade-box">
-                                Quantidade 1
-                            </div>
-                            <a href="carrinho.html"><button class="botao-adicionar-mais">Adicionar mais</button></a>
-                        </div>
-                    </div>
+                    <div class="lista-confirmacao-livros" id="lista-confirmacao-livros"></div>
                 </section>
 
                 <section class="secao-confirmacao secao-info-pedido">
                     <div class="titulo-secao-box">
                         <h2>Informações do Pedido</h2>
                     </div>
-                    <div class="detalhes-pedido">
-                        <p class="detalhe-item">O Labirinto do Fauno — Guillermo del Toro, Cornelia Funke</p>
-                        <p class="detalhe-item">Seu livro será entregue em:</p>
-                        <p class="detalhe-item">Rua das Acácias, 155 — Bairro Centro, Garanhuns/PE</p>
-                        <p class="detalhe-item endereco-entrega">CEP: 55090-191</p>
-                        <p class="detalhe-item">Taxa de entrega: R$ 6,00</p>
-                        <p class="detalhe-item">Devolução: em até 1 mês após a entrega.</p>
-                        <p class="detalhe-item obs-biblioteca">Em caso de atraso, será cobrada multa conforme as regras da biblioteca.</p>
-                    </div>
+                    <div class="detalhes-pedido" id="detalhes-pedido"></div>
                 </section>
             </div>
 
@@ -114,6 +91,7 @@
     </main>
     <div id="footer"></div>
 
+    <script src="/js/scriptConfirmacao.js"></script>
     <script src="/js/header.js"></script>
     <script src="/js/footer.js"></script>
 </body>
