@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { openDb } from "../configDB.js"
+import { openDb } from "../data/configDB.js"
 import autenticar from '../middleware/auth.js'
 
 const router = Router();

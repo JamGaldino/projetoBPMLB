@@ -1,4 +1,4 @@
-import { openDb } from "../configDB.js";
+import { openDb } from "../data/configDB.js";
 
 // a tabela de livros se não existir 
 export async function createTableLivros() {
