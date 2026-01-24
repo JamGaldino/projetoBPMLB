@@ -6,15 +6,11 @@ async function carregarTelaInicial() {
     const botaoSaga = document.querySelector(".bt-dois") // pega os botões existentes
 
     if (botaoSobre) {
-        botaoSobre.addEventListener("click", () => {
-            console.log("Banner: conhecer sobre nós")
-        })
+        botaoSobre.addEventListener("click", console.log("Banner: conhecer sobre nós"))
     }
 
     if (botaoSaga) {
-        botaoSaga.addEventListener("click", () => {
-            console.log("Banner: conhecer saga Harry Potter")
-        })
+        botaoSaga.addEventListener("click",console.log("Banner: conhecer saga Harry Potter"))
     }
 
     const resposta = await fetch("/livros/tela-inicial") // caminho para pega os dados aqui 

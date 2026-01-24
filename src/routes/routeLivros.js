@@ -25,6 +25,8 @@ router.get("/explorar-livros", explorar);
 // Lista livros da página Explorar (com ou sem filtro por gênero)
 
 router.get("/colecao",explorarPorColecao)
-
+// Lista livros por coleção
 
 export default router;
+
+
