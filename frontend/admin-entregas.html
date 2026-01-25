@@ -18,7 +18,7 @@
     <main class="container admin-container">
         <div class="admin-header">
             <h1>Gestão de Entregas e Devoluções</h1>
-            <button class="botao-novo-registro">Novo Pedido</button>
+            <button class="botao-novo-registro" id="btnNovoPedido">Novo Pedido</button>
         </div>
 
         <div class="tabela-div">
@@ -31,39 +31,6 @@
                 <div class="tabela-celula">Status</div>
                 <div class="tabela-celula celula-acoes">Ações</div>
             </div>
-            
-            <div class="tabela-linha">
-                <div class="tabela-celula celula-id">P001</div>
-                <div class="tabela-celula celula-nome">O Labirinto do Fauno</div>
-                <div class="tabela-celula celula-nome">Ana Silva</div>
-                <div class="tabela-celula">10/11/2025</div>
-                <div class="tabela-celula"><span class="status-badge status-pendente">Pendente</span></div>
-                <div class="tabela-celula celula-acoes">
-                    <button class="botao-acao botao-status-entregue">Marcar Entrega</button>
-                </div>
-            </div>
-            
-            <div class="tabela-linha">
-                <div class="tabela-celula celula-id">P002</div>
-                <div class="tabela-celula celula-nome">O Corvo</div>
-                <div class="tabela-celula celula-nome">Maria Oliveira</div>
-                <div class="tabela-celula">01/10/2025</div>
-                <div class="tabela-celula"><span class="status-badge status-entregue">Entregue</span></div>
-                <div class="tabela-celula celula-acoes">
-                    <button class="botao-acao botao-status-devolvido">Marcar Devolução</button>
-                </div>
-            </div>
-            
-            <div class="tabela-linha">
-                <div class="tabela-celula celula-id">P003</div>
-                <div class="tabela-celula celula-nome">A Biblioteca da Meia-Noite</div>
-                <div class="tabela-celula celula-nome">Pedro Costa</div>
-                <div class="tabela-celula">15/09/2025</div>
-                <div class="tabela-celula"><span class="status-badge status-devolvido">Devolvido</span></div>
-                <div class="tabela-celula celula-acoes">
-                    <button class="botao-acao botao-editar">Detalhes</button>
-                </div>
-            </div>
         </div>
     </main>
 
@@ -71,5 +38,6 @@
 
     <script src="/js/header.js"></script>
     <script src="/js/footer.js"></script>
+    <script src="/js/adminEntregas.js"></script>
 </body>
 </html>

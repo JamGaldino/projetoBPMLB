@@ -1,6 +1,7 @@
 (() => {
     document.addEventListener("DOMContentLoaded", async () => {
         await carregarHeader()
+
         ativarMenu()
         await carregarLivrosHeader()
         ativarBusca()
@@ -11,6 +12,23 @@
     async function carregarHeader() {
         const res = await fetch("/header.html")
         document.getElementById("header").innerHTML = await res.text()
+
+        ativarMenuAdmin();
+    }
+
+    function ativarMenuAdmin() {
+        const usuarioStr = localStorage.getItem("usuarioLogado");
+        if (!usuarioStr) return;
+
+        const usuario = JSON.parse(usuarioStr);
+
+        if (usuario.email === "admin@biblioteca.com") {
+            const linkUsuarios = document.getElementById("link-admin-usuarios");
+            const linkPedidos = document.getElementById("link-admin-pedidos");
+
+            if (linkUsuarios) linkUsuarios.style.display = "block";
+            if (linkPedidos) linkPedidos.style.display = "block";
+        }
     }
 
     async function carregarLivrosHeader() {

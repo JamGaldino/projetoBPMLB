@@ -10,9 +10,54 @@ function verificarLogin() {
     return token;
 }
 
+function preencherEndereco() {
+  const usuarioStr = localStorage.getItem("usuarioLogado");
+  if (!usuarioStr) return;
+
+  const usuario = JSON.parse(usuarioStr);
+
+  const ruaCompleta = `${usuario.rua || ""}${usuario.numero ? ", " + usuario.numero : ""}${usuario.complemento ? " - " + usuario.complemento : ""}`;
+
+  const elRua = document.getElementById("end-rua");
+  const elCep = document.getElementById("end-cep");
+  const elBairro = document.getElementById("end-bairro");
+  const elCidade = document.getElementById("end-cidade");
+  const elUf = document.getElementById("end-uf");
+
+  if (elRua) elRua.textContent = ruaCompleta.trim() || "Rua não cadastrada";
+  if (elCep) elCep.textContent = `CEP: ${usuario.cep || "-"}`;
+  if (elBairro) elBairro.textContent = `Bairro: ${usuario.bairro || "-"}`;
+  if (elCidade) elCidade.textContent = `Cidade: ${usuario.cidade || "-"}`;
+  if (elUf) elUf.textContent = `Estado: ${usuario.uf || "-"}`;
+}
+
+function formatarDataBR(data) {
+  const dia = String(data.getDate()).padStart(2, "0");
+  const mes = String(data.getMonth() + 1).padStart(2, "0");
+  const ano = data.getFullYear();
+  return `${dia}/${mes}/${ano}`;
+}
+
+function preencherInfoEmprestimo() {
+  const PRAZO_DIAS = 30;
+
+  const hoje = new Date();
+  const devolucao = new Date();
+  devolucao.setDate(hoje.getDate() + PRAZO_DIAS);
+
+  const elPrazo = document.getElementById("prazo-emprestimo");
+  const elDevolucao = document.getElementById("data-devolucao");
+
+  if (elPrazo) elPrazo.textContent = `${PRAZO_DIAS} dias`;
+  if (elDevolucao) elDevolucao.textContent = formatarDataBR(devolucao);
+}
+
 async function carregarConfirmacao() {
     const token = verificarLogin();
     if (!token) return;
+
+    preencherEndereco();
+    preencherInfoEmprestimo();
 
     const lista = document.getElementById("lista-confirmacao-livros");
     const detalhes = document.getElementById("detalhes-pedido");
@@ -69,6 +114,8 @@ async function carregarConfirmacao() {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` }
         });
+
+        alert("Pedido realizado com sucesso!");
         window.location.href = "carrinho.html";
       });
     }
