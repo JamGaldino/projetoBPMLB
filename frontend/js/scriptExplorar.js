@@ -47,9 +47,9 @@ function criarCardLivro(livro) {
     const container = document.createElement("div");
     container.classList.add("book-card-container");
 
-    const a = document.createElement("a");
-    a.classList.add("book-card");
-    a.href = `informacao.html?titulo=${encodeURIComponent(livro.titulo)}`;
+    const linkCard = document.createElement("a");
+    linkCard.classList.add("book-card");
+    linkCard.href = `informacao.html?titulo=${encodeURIComponent(livro.titulo)}`;
 
 
     const img = document.createElement("img");
@@ -77,7 +77,7 @@ function criarCardLivro(livro) {
         adicionarFavorito(livro.id_livro, btnFavoritar);
     });
 
-    container.appendChild(a);
+    container.appendChild(linkCard);
     container.appendChild(btnFavoritar);
 
     return container;

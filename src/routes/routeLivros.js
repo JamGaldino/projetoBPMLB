@@ -9,14 +9,14 @@ import {
 } from "../controller/controllerLivros.js";   
 const router = Router();
 
+router.post("/importar-livros", importarLivros); 
+// Importa livros para o banco de dados
+
 router.get("/", listarLivros); 
 // Lista todos os livros do banco
 
 router.get("/detalhes", detalhesLivro); 
 // Retorna os detalhes de um livro específico (por título)
-
-router.post("/importar-livros", importarLivros); 
-// Importa livros para o banco de dados
 
 router.get("/tela-inicial", listarLivrosTelaInicial); 
 // Retorna livros de destaque e lançamentos da tela inicial
