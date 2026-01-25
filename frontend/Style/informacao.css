@@ -12,8 +12,10 @@ body {
 
 /* --- Detalhes da obra --- */
 .detalhes-obra {
-    padding: 10px 10px;        /* ↓ menos espaço horizontal */
-    max-width: 1450px;         /* ↑ ocupa mais a tela */
+    padding: 10px 10px;
+    /* ↓ menos espaço horizontal */
+    max-width: 1450px;
+    /* ↑ ocupa mais a tela */
     margin: 20px auto 15px auto;
 }
 
@@ -24,14 +26,16 @@ body {
     border-bottom: 2px solid #ccc;
     padding-bottom: 10px;
     margin-bottom: 20px;
+
+    h2 {
+        font-size: 32px;
+        color: #312783;
+        font-weight: 400;
+        margin: 0;
+    }
 }
 
-.detalhes-header h2 {
-    font-size: 32px;
-    color: #312783;
-    font-weight: 400;
-    margin: 0;
-}
+
 
 .carrinho {
     cursor: pointer;
@@ -70,12 +74,13 @@ body {
 
 /* --- Sinopse --- */
 .sinopse {
-    padding: 10px 10px;        /* ↓ igual ao topo */
+    padding: 10px 10px;
+    /* ↓ igual ao topo */
     max-width: 1450px;
     margin: 0 auto 30px auto;
 }
 
-.sinopse h2{
+.sinopse h2 {
     border-bottom: 2px solid #162ee4;
     margin-bottom: 10px;
 }
@@ -101,7 +106,8 @@ body {
 }
 
 .tabela-container h3 {
-    background-color: #2e2672; /* Roxo do título */
+    background-color: #2e2672;
+    /* Roxo do título */
     color: #fff;
     padding: 10px 15px;
     font-weight: 400;
@@ -117,14 +123,14 @@ body {
 }
 
 .tabela-exemplares thead {
-    
-    background-color: #ffffff; /* Cabeçalho roxo */
+
+    background-color: #ffffff;
+    /* Cabeçalho roxo */
     color: #5F5F5F;
 }
 
-.tabela-exemplares th, 
+.tabela-exemplares th,
 .tabela-exemplares td {
     padding: 12px 10px;
     border-bottom: 1px solid #bfbaba;
 }
-

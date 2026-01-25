@@ -2,8 +2,8 @@ window.addEventListener("load", carregarTelaInicial) // executa quando toda pagi
 
 async function carregarTelaInicial() { 
 
-    const botaoSobre = document.querySelector(".bt-um")
-    const botaoSaga = document.querySelector(".bt-dois") // pega os botões existentes
+    const botaoSobre = document.querySelector(".botao-um")
+    const botaoSaga = document.querySelector(".botao-dois") // pega os botões existentes
 
     if (botaoSobre) {
         botaoSobre.addEventListener("click", console.log("Banner: conhecer sobre nós"))

@@ -1,4 +1,3 @@
-console.log("SCRIPT EXPLORAR CARREGOU");
 window.addEventListener("load", carregarExplorar);
 
 async function carregarExplorar() {
@@ -52,19 +51,21 @@ function criarCardLivro(livro) {
     a.classList.add("book-card");
     a.href = `informacao.html?titulo=${encodeURIComponent(livro.titulo)}`;
 
+
     const img = document.createElement("img");
     img.src = livro.imagem_url.trim();
     img.alt = livro.titulo;
 
-    const h3 = document.createElement("h3");
-    h3.textContent = livro.titulo;
+    const titulo = document.createElement("h3");
+    titulo.textContent = livro.titulo;
 
-    const p = document.createElement("p");
-    p.textContent = livro.autor;
+    const autor = document.createElement("p");
+    autor.textContent = livro.autor;
 
-    a.appendChild(img);
-    a.appendChild(h3);
-    a.appendChild(p);
+    linkCard.appendChild(img);
+    linkCard.appendChild(titulo);
+    linkCard.appendChild(autor);
+
 
     // Botão de favoritar
     const btnFavoritar = document.createElement("button");
@@ -112,4 +113,5 @@ async function adicionarFavorito(livroId, botao) {
         console.error("Erro ao favoritar:", erro);
         alert("Erro ao favoritar livro");
     }
+
 }

@@ -21,8 +21,8 @@ async function carregarInformacao() {
 
     exemplares = livros
 
-    preencherDetalhesLivro(livros[0])
-    listarExemplares(livros)
+    preencherInformacoesLivro(livros[0])
+    TabelaDosExemplares(livros)
 
     const btnCarrinho = document.getElementById("btnCarrinho")
     if (btnCarrinho) {
@@ -30,7 +30,7 @@ async function carregarInformacao() {
     }
 }
 
-function preencherDetalhesLivro(livro) {
+function preencherInformacoesLivro(livro) {
     document.querySelector(".capa-livro").src = livro.imagem_url
 
     document.getElementById("titulo").textContent = livro.titulo
@@ -43,8 +43,8 @@ function preencherDetalhesLivro(livro) {
     document.getElementById("classificacao").textContent = livro.classificacao_etaria
     document.getElementById("sinopse").textContent = livro.sinopse
     document.getElementById("id").textContent = livro.id_livro
-    
-    const linhaColecao = document.getElementById("linha-colecao");
+
+    const linhaColecao = document.getElementById("lugar-colecao");
     const spanColecao = document.getElementById("colecao");
     const linkColecao = document.getElementById("link-colecao");
 
@@ -113,30 +113,30 @@ async function favoritarLivro(livroId) {
         alert("Erro ao favoritar livro");
     }
 }
-function listarExemplares(lista) {
+function TabelaDosExemplares(lista) {
     const corpoTabela = document.getElementById("corpoTabela")
-    corpoTabela.innerHTML = ""
+    corpoTabela.innerHTML = "" // limpa o corpo da tabela antes de adicionar novos dados
 
     lista.forEach(exemplar => {
-        const tr = document.createElement("tr")
+        const CriarTabela = document.createElement("tr") // cria uma linha na tabela
 
-        const tdId = document.createElement("td")
-        tdId.textContent = exemplar.id_livro
+        const inforId = document.createElement("td")    // cria uma coluna na tabela
+        inforId.textContent = exemplar.id_livro
 
-        const tdSecao = document.createElement("td")
-        tdSecao.textContent = exemplar.secao
+        const infoSecao = document.createElement("td")
+        infoSecao.textContent = exemplar.secao
 
-        const tdStatus = document.createElement("td")
-        tdStatus.textContent =
+        const inforStatus = document.createElement("td")
+        inforStatus.textContent =
             exemplar.disponibilidade.toLowerCase() === "disponível"
                 ? "Disponível"
                 : "Indisponível"
 
-        tr.appendChild(tdId)
-        tr.appendChild(tdSecao)
-        tr.appendChild(tdStatus)
+        CriarTabela.appendChild(inforId)
+        CriarTabela.appendChild(infoSecao)
+        CriarTabela.appendChild(inforStatus)
 
-        corpoTabela.appendChild(tr)
+        corpoTabela.appendChild(CriarTabela)
     })
 }
 

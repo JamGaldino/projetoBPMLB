@@ -11,15 +11,16 @@ body {
     background-color: #f7a700;
     text-align: center;
     padding: 15px 0;
-}
 
-.contato-title h2 {
+    h2 {
 
     margin: 0;
     color: white;
     font-size: 28px;
     font-weight: 400;
+    }
 }
+
 
 .contato-container {
     display: flex;
@@ -30,27 +31,26 @@ body {
     background: #fff;
 }
 
-.contato-form {
+.contato-formulario {
     width: 45%;
     display: flex;
     flex-direction: column;
     gap: 15px;
-}
 
-.contato-form input,
-.contato-form textarea {
+    input,textarea {
     border: 1.5px solid #ddd;
     border-radius: 8px;
     padding: 12px 15px;
     font-size: 14px;
     resize: none;
-}
-
-.contato-form textarea {
+    }
+    textarea {
     height: 120px;
+    }
 }
 
-.btn-enviar {
+
+.botao-enviar {
     background-color: #242978; 
     color: white;
     border: none;
@@ -66,9 +66,11 @@ body {
     width: 36%;
     display: flex;
     justify-content: center;
-}
 
-.contato-imagem img {
+    img {
     max-width: 100%;
     height: auto;
+    }
 }
+
+

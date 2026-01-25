@@ -73,12 +73,13 @@ body {
 
 .books-section {
     padding: 40px 60px;
-}
 
-.books-section h2 {
+    h2 {
     color: #312783;
     margin-bottom: 10px;
+    }
 }
+
 
 .book-grid {
     display: grid;
@@ -95,21 +96,25 @@ body {
     text-align: center;
     text-decoration: none; 
     color: inherit; 
-}
+    transition: 0.3s;
 
-
-.book-card img {
+    img {
     width: 100%;
     border-radius: 8px;
-}
+    }
 
-.book-card h3 {
-    font-size: 15px;
-    color: #312783;
-    margin: 10px 0 5px;
-}
+    h3 {
+        font-size: 15px;
+        color: #312783;
+        margin: 10px 0 5px;
+    }
 
-.book-card p {
+    p {
     font-size: 13px;
     color: #555555;
+    }
+}
+
+.book-card:hover {
+    transform: scale(1.02);
 }

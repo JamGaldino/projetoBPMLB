@@ -2,7 +2,7 @@ window.addEventListener("load", carregarFaleConosco) // executa quando a página
 
 function carregarFaleConosco() {
 
-    const botaoEnviar = document.querySelector(".btn-enviar")
+    const botaoEnviar = document.querySelector(".botao-enviar")
 
     if (botaoEnviar) {
         botaoEnviar.addEventListener("click", enviarMensagem)
@@ -20,12 +20,6 @@ function enviarMensagem() {
         alert("Por favor, preencha os campos obrigatórios.")
         return
     }
-
-    console.log("Contato enviado:")
-    console.log("Nome:", nome)
-    console.log("Email:", email)
-    console.log("Número:", numero)
-    console.log("Mensagem:", mensagem)
 
     alert("Mensagem enviada com sucesso!")
 

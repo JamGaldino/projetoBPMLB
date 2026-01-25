@@ -12,25 +12,16 @@ async function carregarColecao() {
     }
 
     const containerLivros = document.getElementById("bookGrid");
-
-    try {
-        const resposta = await fetch(
-            `/livros/colecao?colecao=${encodeURIComponent(colecao)}`
-        );
-
-        const livros = await resposta.json();
+    const resposta = await fetch(`/livros/colecao?colecao=${encodeURIComponent(colecao)}`);
+    const livros = await resposta.json();
 
 
-        livros.forEach(livro => {
-            const card = criarCardLivro(livro);
-            containerLivros.appendChild(card);
-        });
+    livros.forEach(livro => {
+        const card = criarCardLivro(livro);
+        containerLivros.appendChild(card);
+    });
 
-    } catch (erro) {
-        console.error("Erro ao carregar coleção:", erro);
-        containerLivros.innerHTML =
-            "<p>Erro ao carregar os livros.</p>";
-    }
+
 }
 
 function criarCardLivro(livro) {
@@ -47,15 +38,15 @@ function criarCardLivro(livro) {
     img.src = livro.imagem_url;
     img.alt = livro.titulo;
 
-    const h3 = document.createElement("h3");
-    h3.textContent = livro.titulo;
+    const titulo = document.createElement("h3");
+    titulo.textContent = livro.titulo;
 
-    const p = document.createElement("p");
-    p.textContent = livro.autor;
+    const autor = document.createElement("p");
+    autor.textContent = livro.autor;
 
-    a.appendChild(img);
-    a.appendChild(h3);
-    a.appendChild(p);
+    linkCard.appendChild(img);
+    linkCard.appendChild(titulo);
+    linkCard.appendChild(autor);
 
     // Botão de favoritar
     const btnFavoritar = document.createElement("button");

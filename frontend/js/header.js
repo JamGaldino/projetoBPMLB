@@ -41,11 +41,11 @@
             }
 
             livrosHeader
-                .filter(l => l.titulo.toLowerCase().includes(termo))
-                .forEach(l => {
+                .filter(livro => livro.titulo.toLowerCase().includes(termo) )
+                .forEach(livro => {
                     resultado.innerHTML += `
-                        <a href="informacao.html?titulo=${encodeURIComponent(l.titulo)}">
-                            ${l.titulo}
+                        <a href="informacao.html?titulo=${encodeURIComponent(livro.titulo)}">
+                            ${livro.titulo}
                         </a>
                     `
                 })

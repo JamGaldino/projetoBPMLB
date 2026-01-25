@@ -1,5 +1,6 @@
 import db from '../data/database.js';
-import { openDb } from '../configDB.js';
+
+import { openDb } from '../data/configDB.js';
 
 export async function criarTabelaFavoritos() {
     await db.exec(`

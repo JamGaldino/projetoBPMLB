@@ -7,14 +7,16 @@ body {
 .explorar-tipo {
     text-align: center;
     margin-top: 40px;
-}
 
-.explorar-tipo h2 {
+    h2 {
     color: #312783;
     margin-bottom: 20px;
     font-weight: 600;
     font-size: 32px;
+    }
+
 }
+
 
 .botao span {
     font-size: 20px;
@@ -41,12 +43,12 @@ body {
     width: 190px;
     height: 150px;
     font-weight: 00;
-}
 
-.botao img {
+    img {
     width: 60px; 
     height: 60px;
     margin-bottom: 13px;
+    }
 }
 
 .botao.ativo {
@@ -111,21 +113,25 @@ body {
     text-align: center;
     text-decoration: none; 
     color: inherit; 
-}
+    transition: 0.3s;
 
-
-.book-card img {
+    img {
     width: 100%;
     border-radius: 8px;
 }
 
-.book-card h3 {
+    h3 {
     font-size: 15px;
     color: #312783;
     margin: 10px 0 5px;
-}
+    }
 
-.book-card p {
+    p {
     font-size: 13px;
     color: #555555;
+    }
+}
+
+.book-card:hover {
+    transform: scale(1.02);
 }
