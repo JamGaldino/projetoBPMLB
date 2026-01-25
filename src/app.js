@@ -21,8 +21,8 @@ app.use(express.json());
 
 app.use("/livros", router);
 app.use("/carrinho", carrinhoRouter);
-app.use('/cadastro', cadastroRoutes);
-app.use('/login', RotasLogin);
+//app.use('/cadastro', cadastroRoutes);
+//app.use('/login', RotasLogin);
 
 
 app.use(express.static(meusCaminhos.frontend));
