@@ -5,6 +5,7 @@ import carrinhoRouter from "./routes/routeCarrinho.js";
 import cadastroRoutes from './routes/RotasCadastro.js';
 import RotasLogin from './routes/RotasLogin.js';
 import RotasPerfil from './routes/RotasPerfil.js';
+import adminRoutes from './routes/adminUsuarios.js';
 import { createTableLivros } from './model/livrosModel.js';
 import './data/database.js';
 import path from 'path';
@@ -19,6 +20,7 @@ app.use("/livros", router);
 app.use("/carrinho", carrinhoRouter);
 app.use('/cadastro', cadastroRoutes);
 app.use('/login', RotasLogin);
+app.use("/admin", adminRoutes);
 
 /* 🔹 ARQUIVOS ESTÁTICOS (DEPOIS) */
 app.use(express.static(meusCaminhos.frontend));
