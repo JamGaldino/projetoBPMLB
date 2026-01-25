@@ -10,7 +10,7 @@ body {
     padding: 10px;
 }
 
-/* --- Detalhes da obra --- */
+
 .detalhes-obra {
     padding: 10px 10px;
     /* ↓ menos espaço horizontal */
@@ -21,8 +21,9 @@ body {
 
 .detalhes-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    gap: 10px;
     border-bottom: 2px solid #ccc;
     padding-bottom: 10px;
     margin-bottom: 20px;
@@ -36,6 +37,12 @@ body {
 }
 
 
+#btnCarrinho {
+    margin-left: auto;
+}
+#btnFavoritar {
+    margin-left: 10px;
+}
 
 .carrinho {
     cursor: pointer;
