@@ -9,6 +9,8 @@ import RotasLogin from './routes/RotasLogin.js';
 import RotasPerfil from './routes/RotasPerfil.js';
 
 import { createTableLivros } from './model/livrosModel.js';
+import { criarTabelaFavoritos } from './model/Favoritos.js';
+import RouteFavoritos from './routes/RouteFavoritos.js';
 import './data/database.js';
 import path from 'path';
 
@@ -33,9 +35,11 @@ app.get('/', (req, res) => {
 app.use('/cadastro', cadastroRoutes);
 app.use('/login', RotasLogin);
 app.use(RotasPerfil);
+app.use('/favoritos', RouteFavoritos);
 //app.use(router);
 
 await createTableLivros()
+await criarTabelaFavoritos();
 
 /* Servidor */
 app.listen(3000, () => {

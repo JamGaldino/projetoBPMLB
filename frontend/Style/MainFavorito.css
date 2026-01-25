@@ -35,6 +35,7 @@ main h2{
     margin-bottom: 15px
 }
 .LivroContaner{
+    width: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,9 +43,11 @@ main h2{
     margin-top: 40px;
 }
 
-.livro {
-    width: 80px;
+.Livro {
+    width: 75px;
     height: 110px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .info {
@@ -64,16 +67,16 @@ main h2{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     border-radius: 15px;
-    padding: 20px;
+    padding: 15px;
     background-color: #ccd3f8;
-    width: 400px;
-    height: 200px;
+    width: 280px;
+    height: 130px;
 }
 .lado{
     display: flex;
     justify-content: center;
-    gap: 90px;
+    gap: 40px;
+    flex-wrap: wrap; 
 }
-

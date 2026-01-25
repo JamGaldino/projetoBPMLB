@@ -1,12 +1,10 @@
 import express from 'express';
 import autenticar from '../middleware/auth.js';
-import editarPerfilController from '../controller/EditarPerfil.js';
 import excluirContaController from '../controller/ExcluirConta.js';
 import bd from '../data/database.js';
 
 const router = express.Router();
 
-router.put('/perfil', autenticar, editarPerfilController);
 router.delete('/perfil', autenticar, excluirContaController);
 router.get('/perfil', autenticar, async (req, res) => {
     const usuario = await bd.get(

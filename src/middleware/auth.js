@@ -11,6 +11,10 @@ export default function autenticar(req, res, next) {
 
     const token = authHeader.split(' ')[1];
 
+    if (!token) {
+    return res.status(401).json({ mensagem: 'Token mal formatado' });
+    }
+    
     try {
         const decoded = jwt.verify(token, SECRET);
         req.usuario = decoded;

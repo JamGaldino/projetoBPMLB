@@ -46,6 +46,36 @@ body {
     gap: 25px;
 }
 
+.book-card-container {
+    position: relative;
+}
+
+.btn-favoritar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ddd;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.btn-favoritar:hover {
+    background: rgba(255, 255, 255, 1);
+    color: #ff6b6b;
+    transform: scale(1.1);
+}
+
+.btn-favoritar.favoritado {
+    color: #ff6b6b;
+}
+
 .book-card {
     display: block;
     background-color: #fff;

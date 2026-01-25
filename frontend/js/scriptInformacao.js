@@ -55,6 +55,63 @@ function preencherDetalhesLivro(livro) {
         linhaColecao.style.display = "none";
     }
     
+    // Adicionar botão de favoritar ao header
+    const detalhesHeader = document.querySelector(".detalhes-header");
+    if (detalhesHeader && !document.getElementById("btnFavoritar")) {
+        const btnFavoritar = document.createElement("img");
+        btnFavoritar.id = "btnFavoritar";
+        btnFavoritar.src = "img/Star.png";
+        btnFavoritar.alt = "Adicionar aos favoritos";
+        btnFavoritar.style.cursor = "pointer";
+        btnFavoritar.style.width = "40px";
+        btnFavoritar.style.marginLeft = "10px";
+        btnFavoritar.addEventListener("click", () => favoritarLivro(livro.id_livro));
+        detalhesHeader.appendChild(btnFavoritar);
+    }
+}
+
+// Função para favoritarlivro na página de informação
+async function favoritarLivro(livroId) {
+    const token = localStorage.getItem("token");
+    
+    console.log(" Tentando favoritar livro ID:", livroId);
+    console.log("Token:", token ? "Existe" : " Não existe");
+    
+    if (!token) {
+        alert("Você precisa estar autenticado para favoritar");
+        return;
+    }
+
+    try {
+        console.log("Enviando requisição POST para /favoritos");
+        const resposta = await fetch("/favoritos", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ livroId: livroId })
+        });
+
+        console.log("Resposta do servidor:", resposta.status, resposta.statusText);
+
+        if (resposta.ok) {
+            console.log("Livro favoritado com sucesso!");
+            alert("Livro adicionado aos favoritos!");
+            const btnFavoritar = document.getElementById("btnFavoritar");
+            if (btnFavoritar) {
+                btnFavoritar.style.opacity = "1";
+                btnFavoritar.style.filter = "brightness(0.8)";
+            }
+        } else {
+            const erro = await resposta.json();
+            console.error("Erro do servidor:", erro);
+            alert(erro.erro || "Erro ao favoritar livro");
+        }
+    } catch (erro) {
+        console.error("Erro ao favoritar:", erro);
+        alert("Erro ao favoritar livro");
+    }
 }
 function listarExemplares(lista) {
     const corpoTabela = document.getElementById("corpoTabela")
@@ -134,4 +191,40 @@ function adicionarAoCarrinho() {
             else alert("Não consegui adicionar ao carrinho.");
         })
         .catch(() => alert("Erro de conexão com o servidor."));    
+}
+
+// Função para favoritar livro na página de informação
+async function favoritarLivro(livroId) {
+    const token = localStorage.getItem("token");
+    
+    if (!token) {
+        alert("Você precisa estar autenticado para favoritar");
+        return;
+    }
+
+    try {
+        const resposta = await fetch("/favoritos", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ livroId: livroId })
+        });
+
+        if (resposta.ok) {
+            alert("Livro adicionado aos favoritos!");
+            const btnFavoritar = document.getElementById("btnFavoritar");
+            if (btnFavoritar) {
+                btnFavoritar.style.opacity = "1";
+                btnFavoritar.style.filter = "brightness(0.8)";
+            }
+        } else {
+            const erro = await resposta.json();
+            alert(erro.erro || "Erro ao favoritar livro");
+        }
+    } catch (erro) {
+        console.error("Erro ao favoritar:", erro);
+        alert("Erro ao favoritar livro");
+    }
 }

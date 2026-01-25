@@ -32,6 +32,19 @@ await db.exec(`
     );
 `);
 
+
+await db.exec(`
+    CREATE TABLE IF NOT EXISTS favoritos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        usuario_id INTEGER NOT NULL,
+        livro_id INTEGER NOT NULL,
+        UNIQUE (usuario_id, livro_id), 
+        FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+    );
+`);
+
+console.log('Banco conectado e tabelas (usuários, livros e favoritos) prontas!');
+
 console.log('Banco conectado e tabela usuários pronta');
 
 export default db;
