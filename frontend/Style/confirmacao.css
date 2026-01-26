@@ -302,3 +302,7 @@ body {
 .botao-confirmacao-principal:hover {
     opacity: 0.9;
 }
+
+.info-pedido p {
+  font-size: 14px;
+}
