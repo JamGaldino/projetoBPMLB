@@ -2,7 +2,7 @@ import express from 'express';
 
 import meusCaminhos from './utils/paths.js';
 
-import router from './routes/routeLivros.js'
+import routerLivro from './routes/routeLivros.js'
 import carrinhoRouter from "./routes/routeCarrinho.js";
 import cadastroRoutes from './routes/RotasCadastro.js';
 import RotasLogin from './routes/RotasLogin.js';
@@ -19,11 +19,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use("/livros", router);
+app.use("/livros",  routerLivro);
 app.use("/carrinho", carrinhoRouter);
-//app.use('/cadastro', cadastroRoutes);
-//app.use('/login', RotasLogin);
-
 
 app.use(express.static(meusCaminhos.frontend));
 
