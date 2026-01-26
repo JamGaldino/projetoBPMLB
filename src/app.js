@@ -21,23 +21,18 @@ app.use(express.json());
 
 app.use("/livros",  routerLivro);
 app.use("/carrinho", carrinhoRouter);
-app.use('/cadastro', cadastroRoutes);
-app.use('/login', RotasLogin);
 app.use("/admin", adminRoutes);
 
-
+app.use('/cadastro', cadastroRoutes);
+app.use('/login', RotasLogin);
+app.use(RotasPerfil);
+app.use('/favoritos', RouteFavoritos);
 app.use(express.static(meusCaminhos.frontend));
 
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(meusCaminhos.frontend, 'inicial.html'));
 });
-
-app.use('/cadastro', cadastroRoutes);
-app.use('/login', RotasLogin);
-app.use(RotasPerfil);
-app.use('/favoritos', RouteFavoritos);
-//app.use(router);
 
 await createTableLivros()
 await criarTabelaFavoritos();
